@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  ai-brand-studio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    environment:
+      - HF_TOKEN=${HF_TOKEN}
+      - HF_TEXT_MODEL=${HF_TEXT_MODEL:-mistralai/Mistral-7B-Instruct-v0.1}
+      - HF_IMAGE_MODEL=${HF_IMAGE_MODEL:-stabilityai/stable-diffusion-xl-base-1.0}
+      - USE_LOCAL_GPU=false
+      - USE_HF_INFERENCE_API=true
+      - STORAGE_PATH=/app/data/sessions
+      - CHROMA_PERSIST_DIR=/app/data/chroma
+      - DEBUG=false
+    volumes:
+      - brand-studio-data:/app/data
+      - ./streamlit_app:/app/streamlit_app:ro
+      - ./backend:/app/backend:ro
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8501/_stcore/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: ChromaDB for RAG/Personalization
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma-data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma
+    profiles:
+      - with-vectordb
+
+volumes:
+  brand-studio-data:
+  chroma-data:
+
+
+networks:
+  default:
+    name: ai-brand-studio-network

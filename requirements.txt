@@ -1,0 +1,50 @@
+
+# Core
+python-dotenv
+pydantic
+pydantic-settings
+
+# LangChain Ecosystem
+langchain
+langchain-community
+langchain-core
+langgraph
+
+# Hugging Face
+huggingface-hub
+transformers
+accelerate
+diffusers
+safetensors
+
+# Streamlit
+streamlit
+streamlit-extras
+
+# Image Processing
+Pillow
+torch
+torchvision
+
+# Utilities
+requests
+aiohttp
+tenacity
+
+# Storage
+# boto3  # For optional S3 storage
+
+# Testing
+pytest
+pytest-asyncio
+
+# Optional: Vector DB for RAG
+chromadb
+faiss-cpu
+
+# Logging & Monitoring
+structlog
+
+# API (if migrating to FastAPI later)
+fastapi
+uvicorn
