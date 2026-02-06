@@ -1,4 +1,4 @@
-# 🚀 AI Brand Studio
+# 🚀 Godaddy AI Brand Studio
 
 **An AI-powered brand asset generator inspired by GoDaddy Airo™**
 
