@@ -1,6 +1,4 @@
 """
-LangChain Chains for AI Brand Studio
-====================================
 Defines all prompt templates and chains for brand asset generation.
 """
 
@@ -13,9 +11,7 @@ from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from pydantic import BaseModel, Field
 
 
-# ============================================
 # Output Schemas (Pydantic models)
-# ============================================
 
 class DomainSuggestion(BaseModel):
     """Schema for a single domain suggestion."""
@@ -52,9 +48,7 @@ class SocialPosts(BaseModel):
     posts: List[SocialPost] = Field(description="List of social media posts")
 
 
-# ============================================
 # Prompt Templates
-# ============================================
 
 DOMAIN_PROMPT_TEMPLATE = """You are a creative domain name generator specializing in memorable, brandable names.
 
@@ -188,9 +182,7 @@ Return ONLY the image generation prompt, nothing else. The prompt should be 50-1
 Important: Do NOT include any text or letters in the logo description - the logo should be purely symbolic/iconic."""
 
 
-# ============================================
 # Chain Implementations
-# ============================================
 
 class BrandStudioChains:
     """

@@ -1,4 +1,4 @@
-# AI Brand Studio - Production Dockerfile
+# GoDaddy Ai - Production Dockerfile
 FROM python:3.10-slim
 
 # Set environment variables

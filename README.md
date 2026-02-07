@@ -1,4 +1,4 @@
-# 🚀 Godaddy AI Brand Studio
+# 🚀 AI Brand Studio
 
 **An AI-powered brand asset generator inspired by GoDaddy Airo™**
 
@@ -39,5 +39,5 @@ Generate a complete brand starter kit from a single business description:
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/shailovesingh/Godaddy-Ai
+git https://github.com/shailovesingh/Godaddy-Ai
 cd Godaddy-Ai

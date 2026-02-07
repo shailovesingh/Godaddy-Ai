@@ -1,9 +1,3 @@
-"""
-LangChain Agents for AI Brand Studio
-====================================
-Agent-based orchestration for complex brand generation workflows.
-"""
-
 import os
 from typing import Dict, List, Any, Optional, Annotated, TypedDict, Sequence
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
@@ -14,9 +8,7 @@ from pydantic import BaseModel, Field
 import json
 
 
-# ============================================
 # Tool Definitions
-# ============================================
 
 class DomainCheckInput(BaseModel):
     """Input schema for domain availability check."""
@@ -132,9 +124,7 @@ def publish_website(domain: str, template_id: str, content: Dict) -> Dict[str, A
     }
 
 
-# ============================================
 # LangChain Tools
-# ============================================
 
 domain_check_tool = StructuredTool.from_function(
     func=check_domain_availability,
@@ -156,9 +146,7 @@ publish_tool = Tool(
 )
 
 
-# ============================================
 # LangGraph State & Workflow
-# ============================================
 
 class BrandGenerationState(TypedDict):
     """State schema for the brand generation workflow."""
@@ -501,9 +489,7 @@ class BrandStudioAgent:
         """
 
 
-# ============================================
 # MCP-Style Tool Interface (Stub)
-# ============================================
 
 class MCPToolInterface:
     """

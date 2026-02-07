@@ -1,7 +1,4 @@
 """
-Tests for LangChain Chains
-==========================
-
 Unit and integration tests for the brand generation chains.
 """
 
@@ -34,9 +31,7 @@ from backend.llm_clients import LLMClientManager, MockTextLLM
 from backend.utils import sanitize_input, validate_business_description
 
 
-# ============================================
 # Fixtures
-# ============================================
 
 @pytest.fixture
 def mock_llm():
@@ -71,9 +66,7 @@ def sample_descriptions():
     ]
 
 
-# ============================================
 # Unit Tests: Prompt Templates
-# ============================================
 
 class TestPromptTemplates:
     """Test prompt template formatting."""
@@ -102,9 +95,7 @@ class TestPromptTemplates:
         assert "{brand_name}" in LOGO_PROMPT_TEMPLATE
 
 
-# ============================================
 # Unit Tests: Domain Generation
-# ============================================
 
 class TestDomainGeneration:
     """Test domain name generation."""
@@ -174,9 +165,8 @@ class TestDomainGeneration:
             assert "rationale" in domain
 
 
-# ============================================
+
 # Unit Tests: Hero Copy Generation
-# ============================================
 
 class TestHeroCopyGeneration:
     """Test hero copy generation."""
@@ -242,9 +232,7 @@ class TestHeroCopyGeneration:
         assert "bullets" in result
 
 
-# ============================================
 # Unit Tests: Social Posts Generation
-# ============================================
 
 class TestSocialPostsGeneration:
     """Test social media posts generation."""
@@ -306,9 +294,7 @@ class TestSocialPostsGeneration:
             assert 10 <= len(content) <= 1000
 
 
-# ============================================
 # Unit Tests: Logo Prompt Generation
-# ============================================
 
 class TestLogoPromptGeneration:
     """Test logo prompt generation."""
@@ -339,9 +325,7 @@ class TestLogoPromptGeneration:
         assert "no text" in LOGO_PROMPT_TEMPLATE.lower() or "without text" in LOGO_PROMPT_TEMPLATE.lower()
 
 
-# ============================================
 # Unit Tests: JSON Parsing
-# ============================================
 
 class TestJSONParsing:
     """Test JSON parsing utilities."""
@@ -382,9 +366,7 @@ class TestJSONParsing:
         assert len(result["domains"]) == 1
 
 
-# ============================================
 # Integration Tests
-# ============================================
 
 class TestIntegration:
     """Integration tests for complete workflows."""
@@ -425,9 +407,7 @@ class TestIntegration:
         assert special_result.get("headline")
 
 
-# ============================================
 # Tests for Utility Functions
-# ============================================
 
 class TestUtilityFunctions:
     """Test utility functions."""
@@ -471,9 +451,7 @@ class TestUtilityFunctions:
         assert result["valid"] is False
 
 
-# ============================================
 # Tests for Pydantic Models
-# ============================================
 
 class TestPydanticModels:
     """Test Pydantic model validation."""
@@ -522,9 +500,7 @@ class TestPydanticModels:
         assert len(post.hashtags) == 2
 
 
-# ============================================
 # Performance Tests
-# ============================================
 
 class TestPerformance:
     """Performance-related tests."""
@@ -560,9 +536,7 @@ class TestPerformance:
         assert duration < 60
 
 
-# ============================================
 # Error Handling Tests
-# ============================================
 
 class TestErrorHandling:
     """Test error handling."""
@@ -591,9 +565,6 @@ class TestErrorHandling:
         assert result == {"fallback": True}
 
 
-# ============================================
-# Run Tests
-# ============================================
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v", "--tb=short"])

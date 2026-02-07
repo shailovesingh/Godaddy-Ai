@@ -1,6 +1,4 @@
 """
-Asset Storage and Packaging for AI Brand Studio
-================================================
 Handles saving, organizing, and packaging generated brand assets.
 """
 

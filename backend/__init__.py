@@ -1,6 +1,6 @@
 """
-AI Brand Studio Backend
-=======================
+GoDaddy AI Backend
+
 Core business logic for brand kit generation.
 """
 

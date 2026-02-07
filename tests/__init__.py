@@ -1,7 +1,4 @@
-## 📄 tests/__init__.py
 """
-AI Brand Studio - Test Suite
-============================
 
 This package contains all tests for the AI Brand Studio application.
 

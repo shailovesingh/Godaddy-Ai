@@ -1,6 +1,4 @@
 """
-Utility Functions for AI Brand Studio
-=====================================
 Common helper functions used throughout the application.
 """
 
@@ -21,9 +19,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-# ============================================
 # Session & ID Generation
-# ============================================
 
 def generate_session_id() -> str:
     """
@@ -65,9 +61,7 @@ def generate_deterministic_id(seed: str) -> str:
     return hashlib.md5(seed.encode()).hexdigest()[:8]
 
 
-# ============================================
 # Input Sanitization & Validation
-# ============================================
 
 def sanitize_input(text: str, max_length: int = 500) -> str:
     """
@@ -286,9 +280,7 @@ def check_content_safety(text: str) -> Dict[str, Any]:
     return result
 
 
-# ============================================
 # Cost Estimation
-# ============================================
 
 def calculate_cost_estimate(results: Dict[str, Any]) -> float:
     """
@@ -405,9 +397,7 @@ def calculate_detailed_cost(
     }
 
 
-# ============================================
 # Time & Duration Formatting
-# ============================================
 
 def format_duration(seconds: float) -> str:
     """
@@ -490,9 +480,7 @@ def parse_timestamp(timestamp_str: str) -> Optional[datetime]:
     return None
 
 
-# ============================================
 # Text Processing
-# ============================================
 
 def extract_keywords(text: str, max_keywords: int = 10) -> List[str]:
     """
@@ -637,9 +625,7 @@ def capitalize_words(text: str) -> str:
     return ' '.join(result)
 
 
-# ============================================
 # JSON Utilities
-# ============================================
 
 def safe_json_loads(text: str, default: Any = None) -> Any:
     """
@@ -694,9 +680,7 @@ def pretty_json(data: Any, indent: int = 2) -> str:
     return json.dumps(data, indent=indent, ensure_ascii=False, default=str)
 
 
-# ============================================
 # Decorators
-# ============================================
 
 def timer(func):
     """
@@ -763,9 +747,7 @@ def log_call(func):
     return wrapper
 
 
-# ============================================
 # Validation Helpers
-# ============================================
 
 def is_valid_email(email: str) -> bool:
     """
@@ -816,9 +798,7 @@ def is_valid_domain(domain: str) -> bool:
     return bool(re.match(pattern, domain))
 
 
-# ============================================
 # Color Utilities
-# ============================================
 
 def hex_to_rgb(hex_color: str) -> Tuple[int, int, int]:
     """
@@ -917,9 +897,7 @@ def hsl_to_rgb(h: float, s: float, l: float) -> Tuple[int, int, int]:
     return (int(r * 255), int(g * 255), int(b * 255))
 
 
-# ============================================
 # Analytics & Metrics
-# ============================================
 
 class MetricsCollector:
     """
@@ -970,9 +948,7 @@ class MetricsCollector:
 metrics_collector = MetricsCollector()
 
 
-# ============================================
 # Environment & Configuration
-# ============================================
 
 def get_env(key: str, default: Any = None, required: bool = False) -> Any:
     """

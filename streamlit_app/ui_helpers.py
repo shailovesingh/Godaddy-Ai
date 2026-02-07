@@ -1,6 +1,6 @@
 """
-UI Helper Functions for AI Brand Studio
-========================================
+UI Helper Functions for GoDaddy AI
+
 Reusable UI components for the Streamlit interface.
 """
 
@@ -159,11 +159,15 @@ def display_social_posts(posts: List[Dict[str, Any]]):
         )
 
 
-def display_logo(logo_path: str):
+def display_logo(logo_path: str, generation_error: str = None):
     """Display the generated logo."""
+    
+    # Show error message if there was an issue
+    if generation_error:
+        st.warning(f"⚠️ AI image generation unavailable: {generation_error[:100]}... Using placeholder.")
+    
     if not logo_path or not Path(logo_path).exists():
         st.warning("Logo file not found. Displaying placeholder.")
-        # Display a placeholder
         st.markdown(
             """
             <div style="
@@ -187,23 +191,19 @@ def display_logo(logo_path: str):
     col1, col2, col3 = st.columns([1, 2, 1])
     
     with col2:
+        # FIX: Changed from use_column_width to width parameter
         st.image(
             logo_path,
             caption="Your AI-Generated Logo",
-            width=300
+            width=400  # Fixed width instead of deprecated use_column_width
         )
     
-    # Logo variations info
+    # Logo info
     st.markdown(
         """
         <div style="text-align: center; color: #666; margin-top: 1rem;">
-            <p>💡 <strong>Tip:</strong> This is your primary logo. 
-            For best results, consider creating variations for:</p>
-            <ul style="list-style: none; padding: 0;">
-                <li>🔲 Favicon (32x32px)</li>
-                <li>📱 Mobile App Icon (512x512px)</li>
-                <li>🌙 Light/Dark mode versions</li>
-            </ul>
+            <p>💡 <strong>Tip:</strong> This logo was generated based on your business description.</p>
+            <p>For production use, consider refining it with a professional designer.</p>
         </div>
         """,
         unsafe_allow_html=True

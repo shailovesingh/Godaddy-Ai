@@ -1,6 +1,6 @@
 """
-AI Brand Studio - Main Streamlit Application
-============================================
+GoDaddy AI - Main Streamlit Application
+
 Generate complete brand starter kits from a single business description.
 """
 
@@ -40,7 +40,7 @@ from streamlit_app.ui_helpers import (
 
 # Page Configuration
 st.set_page_config(
-    page_title="AI Brand Studio",
+    page_title="GoDaddy AI Brand Studio",
     page_icon="🚀",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -186,7 +186,7 @@ def render_sidebar():
 def render_main_content(settings: dict):
     """Render the main content area."""
     # Header
-    st.markdown('<h1 class="main-header">🚀 AI Brand Studio</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header">🚀 GoDaddy AI Brand Studio</h1>', unsafe_allow_html=True)
     st.markdown(
         '<p class="sub-header">Generate your complete brand starter kit in seconds</p>', 
         unsafe_allow_html=True
@@ -373,14 +373,15 @@ def display_results(results: dict):
     st.markdown("---")
     
     # Success Banner
+    generation_time = results.get("metadata", {}).get("generation_time", 0)
     st.markdown(
         f'''<div class="success-banner">
-            🎉 Your brand kit is ready! Generated in {results["metadata"]["generation_time"]:.1f} seconds
+            🎉 Your brand kit is ready! Generated in {generation_time:.1f} seconds
         </div>''',
         unsafe_allow_html=True
     )
     
-    # Create tabs for different sections
+    # Create tabs
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "🌐 Domains", 
         "✨ Hero Copy", 
@@ -391,20 +392,22 @@ def display_results(results: dict):
     
     with tab1:
         st.markdown("### 🌐 Domain Suggestions")
-        display_domain_cards(results['domains'])
+        display_domain_cards(results.get('domains', []))
     
     with tab2:
         st.markdown("### ✨ Hero Copy")
-        display_hero_section(results['hero'])
+        display_hero_section(results.get('hero', {}))
     
     with tab3:
         st.markdown("### 📱 Social Media Posts")
-        display_social_posts(results['social_posts'])
+        display_social_posts(results.get('social_posts', []))
     
     with tab4:
         st.markdown("### 🎨 Your Logo")
+        # Pass any generation error for user feedback
+        logo_error = results.get('metadata', {}).get('logo_error')
         if results.get('logo_path'):
-            display_logo(results['logo_path'])
+            display_logo(results['logo_path'], logo_error)
         else:
             st.info("Logo generation was skipped.")
     
@@ -449,7 +452,7 @@ def main():
         """
         <div style="text-align: center; color: #666; font-size: 0.9rem;">
             Built with ❤️ using LangChain, Hugging Face, and Streamlit<br>
-            <strong>AI Brand Studio</strong> - Powered by Generative AI
+            <strong>GoDaddy AI Brand Studio</strong> - Powered by Generative AI
         </div>
         """,
         unsafe_allow_html=True
