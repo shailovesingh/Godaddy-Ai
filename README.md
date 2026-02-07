@@ -39,5 +39,5 @@ Generate a complete brand starter kit from a single business description:
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-org/ai-brand-studio.git
-cd ai-brand-studio
+git clone https://github.com/shailovesingh/Godaddy-Ai
+cd Godaddy-Ai
